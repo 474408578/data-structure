@@ -20,6 +20,7 @@ public class Main {
 
     // 使用递归
     public static int fibonacci(int n){
+        // O(2^n)
         if (n<=1){
             return n;
         }
@@ -28,6 +29,7 @@ public class Main {
 
     // 不使用递归
     public static int fibonacci2(int n){
+        // 复杂度 O(n)
         if (n<=1){
             return n;
         }
