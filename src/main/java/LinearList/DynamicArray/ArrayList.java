@@ -1,6 +1,6 @@
-package dynamicArray;
+package LinearList.DynamicArray;
 
-import java.util.Arrays;
+import LinearList.AbstractList;
 
 /**
  * 动态数组的设计
@@ -8,16 +8,11 @@ import java.util.Arrays;
  * 2、elements
  *
  */
-public class ArrayList {
-    // 元素的数量, int类型自动初始化为0， 对象类型自动初始化为null
-    private int size;
-
+public class ArrayList<E> extends AbstractList<E> {
     // 所有的元素
-    private int[] elements;
+    private E[] elements;
 
     private static final int DEFAULT_CAPATICY = 3;
-
-    private static final int ELEMENT_NOT_FOUND = -1;
 
     public ArrayList(){
         this(DEFAULT_CAPATICY);
@@ -26,46 +21,36 @@ public class ArrayList {
 
     public ArrayList(int capaticy){
         capaticy = (capaticy > DEFAULT_CAPATICY)? capaticy: DEFAULT_CAPATICY;
-        elements = new int[capaticy];
+        elements = (E[]) new Object[capaticy];
 
-    }
-
-    // 返回元素的数量
-    public int size(){
-        return size;
-    }
-
-    // 是否为空
-    public boolean isEmpty(){
-        return size == 0;
     }
 
     //是否包含某个元素
-    public boolean contains(int element){
+    public boolean contains(E element){
         return indexOf(element) != ELEMENT_NOT_FOUND;
     }
 
     // 添加元素到最后面
-    public void add(int element){
+    public void add(E element){
         add(size, element);
     }
 
     // 返回index位置对应的元素
-    public int get(int index){
+    public E get(int index){
         rangeCheck(index);
         return elements[index];
     }
 
     // 设置index位置的元素
-    public int set(int index, int element){
+    public E set(int index, E element){
         rangeCheck(index);
-        int old = elements[index];
+        E old = elements[index];
         elements[index] = element;
         return old;
     }
 
-    // 往index位置添加元素
-    public void add(int index, int element){
+    // 往index位置添加元素, 可以存储null
+    public void add(int index, E element){
         // 越界检测
         rangeCheckForAdd(index);
         // 动态扩容
@@ -78,48 +63,46 @@ public class ArrayList {
     }
 
     // 删除index位置对应的元素
-    public int remove(int index){
+    public E remove(int index){
         rangeCheck(index);
-        int old = elements[index];
+        E old = elements[index];
         for (int i=index; i<size-1; i++){
-            elements[i] = elements[++i];
+            elements[i] = elements[i+1];
         }
-        size--;
+        elements[--size] = null;
         return old;
     }
 
-    // 查看元素的位置
-    public int indexOf(int element){
-        for (int i=0; i<size; i++){
-            if (elements[i] == element){
-                return i;
+    // 查看元素的位置，对象类型不能直接使用等号，使用等号的话，是比较内存地址，而应该使用equals方法
+    // 由于可以存储空数据，调用这个方法时，使用空对象去调用equals方法，会导致空指针异常。
+    // 具体的比较细节可以在对象的equals()中指定。
+    public int indexOf(E element){
+        if (element == null){
+            for (int i=0; i<size; i++){
+                // 避免空指针调用equals方法异常
+                if (elements[i] == null)
+                    return i;
+            }
+        } else{
+            for (int i=0; i<size; i++){
+                // 防止空指针异常
+                if (element.equals(elements[i])){
+                    return i;
+                }
             }
         }
         return ELEMENT_NOT_FOUND;
     }
 
-    // 清除所有元素
+    // 清除所有元素(将对象数组存储的地址的指向对象清空)
     public void clear(){
+        // 泛型（对象数组引出了内存管理的细节）
         // 清空数组，重新申请内存空间会消耗性能
+        for (int i=0; i<size; i++){
+            elements[i] = null;
+        }
         size = 0;
     }
-
-    private void rangeCheck(int index){
-        if (index < 0 || index >= size){
-            outOfBounds(index);
-        }
-    }
-
-    private void rangeCheckForAdd(int index){
-        if (index < 0 || index > size){
-            outOfBounds(index);
-        }
-    }
-
-    private void outOfBounds(int index){
-        throw new IndexOutOfBoundsException("index: " + index + ", Size: " + size);
-    }
-
     /**
      * 保证有capacity的容量
      * @param capacity
@@ -130,7 +113,7 @@ public class ArrayList {
         if (oldCapacity >= capacity) return;
         // 新容量为旧容量的1.5倍，使用右移运算
         int newCapacity = oldCapacity + (oldCapacity >> 1);
-        int[] newElements = new int[newCapacity];
+        E[] newElements = (E[]) new Object[newCapacity];
         for (int i=0; i<size; i++){
             newElements[i] = elements[i];
         }

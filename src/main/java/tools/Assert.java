@@ -1,4 +1,4 @@
-package dynamicArray;
+package tools;
 
 public class Assert {
     public static void test(boolean value){
