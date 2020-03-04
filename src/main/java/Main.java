@@ -1,5 +1,5 @@
-import tools.Timetool;
-import java.util.ArrayList;
+import tools.TimeTool;
+
 /***
  * 斐波那契数列
  * 0 1 2 3 4 5 6 7
@@ -9,11 +9,11 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        Timetool.check("fibonacci", () -> {
+        TimeTool.check("fibonacci", () -> {
                 System.out.println(fibonacci(42));
         });
 
-        Timetool.check("fibonacci", () -> {
+        TimeTool.check("fibonacci", () -> {
                 System.out.println(fibonacci2(42));
         });
     }

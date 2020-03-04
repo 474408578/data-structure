@@ -12,6 +12,7 @@ public class ArrayList<E> extends AbstractList<E> {
     // 所有的元素
     private E[] elements;
 
+    // 默认容量
     private static final int DEFAULT_CAPATICY = 3;
 
     public ArrayList(){
@@ -36,13 +37,13 @@ public class ArrayList<E> extends AbstractList<E> {
     }
 
     // 返回index位置对应的元素
-    public E get(int index){
+    public E get(int index){ // O(1)
         rangeCheck(index);
         return elements[index];
     }
 
     // 设置index位置的元素
-    public E set(int index, E element){
+    public E set(int index, E element){ // O(1)
         rangeCheck(index);
         E old = elements[index];
         elements[index] = element;
@@ -70,6 +71,7 @@ public class ArrayList<E> extends AbstractList<E> {
             elements[i] = elements[i+1];
         }
         elements[--size] = null;
+        trimCapacity();
         return old;
     }
 
@@ -102,6 +104,11 @@ public class ArrayList<E> extends AbstractList<E> {
             elements[i] = null;
         }
         size = 0;
+
+        // 缩容，仅供参考
+        if (elements != null && elements.length > DEFAULT_CAPATICY) {
+            elements = (E[]) new Object[DEFAULT_CAPATICY];
+        }
     }
     /**
      * 保证有capacity的容量
@@ -118,7 +125,26 @@ public class ArrayList<E> extends AbstractList<E> {
             newElements[i] = elements[i];
         }
         elements = newElements;
-        System.out.println(oldCapacity + "扩容为" + newCapacity);
+        System.out.println(oldCapacity + " 扩容为 " + newCapacity);
+    }
+
+    /**
+     * 动态缩容
+     */
+    private void trimCapacity() {
+        int oldCapacity = elements.length;
+        if (size >= (oldCapacity >> 1) || size <= DEFAULT_CAPATICY) {return;}
+        //剩余空间多
+        int newCapacity = oldCapacity >> 1;
+        E[] newElements = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newElements[i] = elements[i];
+        }
+        elements = newElements;
+        System.out.println(oldCapacity + "缩容为" + newCapacity);
+//        System.out.println("oldCapacity_" + oldCapacity + "newCapacity_" + newCapacity + "size" + size);
+
+
     }
 
     @Override

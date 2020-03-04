@@ -18,6 +18,12 @@ public abstract class AbstractList<E> implements List<E> {
         return size == 0;
     }
 
+
+    @Override
+    public boolean contains(E element) {
+        return indexOf(element) != ELEMENT_NOT_FOUND;
+    }
+
     public void add(E element){
         add(size, element);
     }

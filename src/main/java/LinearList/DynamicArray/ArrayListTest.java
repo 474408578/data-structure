@@ -1,20 +1,24 @@
 package LinearList.DynamicArray;
 
-import tools.Assert;
-
 public class ArrayListTest {
     public static void main(String[] args) {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(10);
-        arrayList.add(13);
-        arrayList.add(22);
-        arrayList.add(65);
-        arrayList.add(72);
+        for (int i = 0; i < 100; i++) {
+            arrayList.add(1);
+        }
 
+        for (int i = 0; i < 90; i++) {
+            arrayList.remove(0);
+        }
+
+        /*
         System.out.println(arrayList);
         arrayList.set(4, 88);
         Assert.test(arrayList.get(4)==56);
         System.out.println(arrayList);
+
+
+
         ArrayList<Object> objects = new ArrayList<>();
 
         ArrayList<Person> persons = new ArrayList<>();
@@ -28,7 +32,7 @@ public class ArrayListTest {
         persons.clear();
         // 提醒JVM进行垃圾回收, 此时会调用finalize()函数
         System.gc();
-
+*/
 
     }
 }

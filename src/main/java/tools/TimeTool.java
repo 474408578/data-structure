@@ -2,7 +2,7 @@ package tools;
 
 import java.time.LocalTime;
 
-public class Timetool {
+public class TimeTool {
     public interface Task{
         void execute();
     }

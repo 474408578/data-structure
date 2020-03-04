@@ -1,6 +1,6 @@
 package tools;
 
-public class Assert {
+public class AssertTool {
     public static void test(boolean value){
         if (!value){
             try {
