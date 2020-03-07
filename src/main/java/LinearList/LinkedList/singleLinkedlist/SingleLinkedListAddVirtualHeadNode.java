@@ -1,4 +1,4 @@
-package LinearList.LinkedList.single;
+package LinearList.LinkedList.singleLinkedlist;
 
 import LinearList.AbstractList;
 

@@ -1,10 +1,10 @@
-package LinearList.LinkedList.circle;
+package LinearList.LinkedList.doubleLinkedList;
 
 import LinearList.List;
 
-public class CircleLinkedListTest {
+public class DoubleLinkedListTest {
     public static void main(String[] args) {
-        List<Integer> list = new CircleLinkedList<>();
+        List<Integer> list = new DoubleLinkedList<>();
         list.add(20);
         list.add(0,10);
         list.add(30);

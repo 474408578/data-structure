@@ -1,4 +1,4 @@
-package LinearList.LinkedList.circle;
+package LinearList.LinkedList.doubleLinkedList;
 
 import LinearList.AbstractList;
 
@@ -9,7 +9,7 @@ import LinearList.AbstractList;
  *  在写入代码时，需要检查临界节点，防止空指针异常。
  * @param <E>
  */
-public class CircleLinkedList<E> extends AbstractList<E> {
+public class DoubleLinkedList<E> extends AbstractList<E> {
     private Node<E> first;
     private Node<E> last;
 
