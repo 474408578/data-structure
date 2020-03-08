@@ -37,22 +37,24 @@ public class DoubleCircleLinkedList<E> extends AbstractList<E> {
 
     @Override
     public E remove(int index) {
+        rangeCheck(index);
         Node<E> node = node(index);
-        Node<E> prev = node.prev;
-        Node<E> next = node.next;
-        // index等于1
-        if (prev == null) {
-            first = next;
+        if (size == 1) {
+            first = null;
             last = null;
         } else {
+            Node<E> prev = node.prev;
+            Node<E> next = node.next;
             prev.next = next;
-        }
-        // index等于size - 1
-        if (next == null) {
-            last = prev;
-        } else {
             next.prev = prev;
+            if (node == first) { // index=0
+                first = next;
+            }
+            if (node == last) { // index=size-1
+                last = prev;
+            }
         }
+
         size--;
         return node.element;
     }

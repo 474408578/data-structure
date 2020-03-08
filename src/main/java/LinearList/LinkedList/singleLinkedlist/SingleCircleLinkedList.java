@@ -43,7 +43,7 @@ public class SingleCircleLinkedList<E> extends AbstractList<E> {
     public void add(int index, E element) {
         rangeCheckForAdd(index);
         // 边界条件, index=0时，后续使用虚拟头结点可不用判断等于0的情况
-        if (index==0){
+        if (index == 0){
             Node<E> newFirst = new Node<>(element, first);
             Node<E> last = (size == 0) ? newFirst: node(size - 1);
             last.next = first;

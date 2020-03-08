@@ -23,7 +23,6 @@ public class ArrayList<E> extends AbstractList<E> {
     public ArrayList(int capaticy){
         capaticy = (capaticy > DEFAULT_CAPATICY)? capaticy: DEFAULT_CAPATICY;
         elements = (E[]) new Object[capaticy];
-
     }
 
     //是否包含某个元素

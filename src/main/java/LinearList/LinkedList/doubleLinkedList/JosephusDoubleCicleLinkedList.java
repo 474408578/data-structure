@@ -3,16 +3,19 @@ package LinearList.LinkedList.doubleLinkedList;
 import LinearList.AbstractList;
 
 /**
- * 双向链表
- *      头结点：prev指向空
- *      尾结点：next指向空
- *  在写入代码时，需要检查临界节点，防止空指针异常。
+ * 发挥双向循环链表的最大威力
+ * 新增一个成员变量、3个方法
+ *      current: 用于指向某个节点
+ *      void reset(): 让current指向头结点first
+ *      E next(): 让current往后走一步，也就是current = current.next
+ *      E remove(): 删除current指向的节点，删除成功后让current指向下一个节点
  * @param <E>
  */
-public class DoubleLinkedList<E> extends AbstractList<E> {
+public class JosephusDoubleCicleLinkedList<E> extends AbstractList<E> {
     private Node<E> first;
     private Node<E> last;
-
+    //增加一个current， 用于指向某个节点
+    private Node<E> current;
     private static class Node<E> {
         E element;
         Node<E> next;
@@ -42,25 +45,57 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
         }
     }
 
-    @Override
-    public E remove(int index) {
-        Node<E> node = node(index);
-        Node<E> prev = node.prev;
-        Node<E> next = node.next;
-        // index等于0
-        if (prev == null) {
-            first = next;
+    public void reset() {
+        current = first;
+    }
+
+    public E next() {
+        if (current == null) return null;
+        current = current.next;
+        return current.element;
+
+    }
+
+    /**
+     * 只剩下一个节点时，当前节点的next指向节点本身
+     * @return
+     */
+    public E remove() {
+        if (current == null) return null;
+        Node<E> next = current.next;
+        E element = remove(current);
+        if (size == 0) {
+            current = null;
         } else {
-            prev.next = next;
+            current = next;
         }
-        // index等于size - 1
-        if (next == null) {
-            last = prev;
+        return element;
+    }
+
+    private E remove(Node<E> node) {
+        if (size == 1) {
+            first = null;
+            last = null;
         } else {
+            Node<E> prev = node.prev;
+            Node<E> next = node.next;
+            prev.next = next;
             next.prev = prev;
+            if (node == first) { // index=0
+                first = next;
+            }
+            if (node == last) { // index=size-1
+                last = prev;
+            }
         }
         size--;
         return node.element;
+    }
+
+    @Override
+    public E remove(int index) {
+        rangeCheck(index);
+        return remove(node(index));
     }
 
     @Override
@@ -111,23 +146,25 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 
         if (index == size) {// 往最后添加元素
             Node<E> oldLast = last;
-            last = new Node<>(element, null, oldLast);
+            last = new Node<>(element, first, oldLast);
             // index == size = 0时， oldLast为空，这是链表添加的第一个元素,first和last都指向这个元素。
             if (oldLast == null){
                 first = last;
+                first.next = first;
+                first.prev = first;
             } else{
                 oldLast.next = last;
+                first.prev = last;
             }
         } else {
-            Node<E> node = node(index);
-            Node<E> prev =node.prev;
-            Node<E> newNode = new Node<>(element, node, prev);
-            node.prev = newNode;
+            Node<E> next = node(index);
+            Node<E> prev = next.prev;
+            Node<E> newNode = new Node<>(element, next, prev);
+            next.prev = newNode;
+            prev.next = newNode;
             // index等于0
-            if (prev == null) {
+            if (next == first) {
                 first = newNode;
-            } else {
-                prev.next = newNode;
             }
         }
 
