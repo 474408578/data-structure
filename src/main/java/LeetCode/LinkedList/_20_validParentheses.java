@@ -8,6 +8,8 @@ import java.util.Stack;
  * https://leetcode.com/problems/valid-parentheses/
  * {}[]()
  * 遍历这个字符串，如果是左括号，将其入栈，如果是右括号，则弹出栈顶元素与右括号做比较。
+ *
+ * 参考：https://www.runoob.com/java/java-character.html
  */
 public class _20_validParentheses {
     public boolean isValid(String s) {
