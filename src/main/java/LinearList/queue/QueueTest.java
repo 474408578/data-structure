@@ -1,21 +1,51 @@
 package LinearList.queue;
 
 public class QueueTest {
+    static void  test() {
+        CircleQueue<Integer> queue = new CircleQueue<>();
+        // 0 1 2 3 4 5 6 7 8 9
+        for (int i = 0; i < 10; i++) {
+            queue.enQueue(i);
+        }
+        // null null null null null 5 6 7 8 9
+        for (int i = 0; i < 5; i++) {
+            queue.deQueue();
+        }
+
+        for (int i = 15; i < 30; i++) {
+            queue.enQueue(i);
+        }
+
+        System.out.println(queue);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.deQueue());
+        }
+    }
+
+    static void test2() {
+        CircleDeque<Integer> queue = new CircleDeque<>();
+        for (int i = 0; i < 10; i++) {
+            queue.enQueueFront(i + 1);
+            queue.enQueueRear(i + 100);
+        }
+        //
+        System.out.println(queue);
+        for (int i = 0; i < 3; i++) {
+            queue.deQueueFront();
+            queue.deQueueRear();
+        }
+
+        queue.enQueueFront(11);
+        queue.enQueueFront(12);
+        System.out.println(queue);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.deQueueFront());
+        }
+    }
+
     public static void main(String[] args) {
-//        QueueUseArrayList<Integer> queue = new QueueUseArrayList<>();
-//        QueueUseDoubleLinkedList<Object> queue = new QueueUseDoubleLinkedList<>();
-        Deque<Integer> queue = new Deque<>();
-        queue.enQueueFront(2);
-        queue.enQueueRear(7);
-        queue.enQueueFront(7);
-        queue.enQueueRear(3);
-        queue.enQueueRear(6);
-        queue.enQueueFront(5);
-        System.out.println(queue);
-        queue.deQueueFront();
-        System.out.println(queue);
-        System.out.println(queue.size());
-        queue.clear();
-        System.out.println(queue);
+//        test();
+    test2();
+
     }
 }

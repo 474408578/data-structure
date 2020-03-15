@@ -31,6 +31,10 @@ public class QueueUseArrayList<E> {
         return list.get(0);
     }
 
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

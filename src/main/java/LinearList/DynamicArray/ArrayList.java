@@ -21,7 +21,7 @@ public class ArrayList<E> extends AbstractList<E> {
     }
 
     public ArrayList(int capaticy){
-        capaticy = (capaticy > DEFAULT_CAPATICY)? capaticy: DEFAULT_CAPATICY;
+        capaticy = (capaticy > DEFAULT_CAPATICY) ? capaticy: DEFAULT_CAPATICY;
         elements = (E[]) new Object[capaticy];
     }
 
