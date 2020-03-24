@@ -83,17 +83,18 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
         Node<E> parent = root;
         Node<E> node = root;
         int cmp = 0;
-        while (node != null) {
+        do {
             cmp = compare(element, node.element);
             parent = node;
             if (cmp > 0) {
                 node = node.right;
             } else if (cmp < 0) {
                 node = node.left;
-            } else {
+            } else { // 相等, 相等时，建议覆盖旧的值
+                node.element = element;
                 return;
             }
-        }
+        } while (node != null);
 
         // 2、插入到父节点的哪个位置
         Node<E> newNode = new Node<>(element, parent);
