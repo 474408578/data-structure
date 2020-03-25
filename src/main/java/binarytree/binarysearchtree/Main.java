@@ -34,6 +34,12 @@ public class Main {
 
         // 打印二叉树，使用代码中的printer进行打印
         BinaryTrees.print(bst);
+//        System.out.println("\n");
+//        bst.preOrderTraversalRecursivly();
+//        System.out.println("\n");
+//        bst.preOrderTraversal();
+        System.out.println("\n");
+        bst.inOrderTraversal();
     }
 
     static void test2() {
@@ -69,8 +75,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-//        test1();
+        test1();
 //        test2();
-        test3();
+//        test3();
     }
 }

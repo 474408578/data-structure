@@ -7,6 +7,7 @@ package binarytree.binarysearchtree;
 import binarytree.binarysearchtree.printer.BinaryTreeInfo;
 
 import java.util.Comparator;
+import java.util.Stack;
 
 /**
  * 二叉搜索树，元素必须具备可比较性
@@ -105,6 +106,58 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
         }
         size++;
     }
+
+    /**
+     * 前序遍历，递归的方式
+     * 根节点，前序遍历左子树，前序遍历右子树
+     */
+    public void preOrderTraversalRecursivly() {
+        preOrderTraversalRecursivly(root);
+    }
+
+    public void preOrderTraversalRecursivly(Node<E> node) {
+        if (node == null) return;
+        System.out.println(node.element);
+        preOrderTraversalRecursivly(node.left);
+        preOrderTraversalRecursivly(node.right);
+    }
+
+
+    /**
+     * 前序遍历，非递归的方式
+     * 1、将root入栈
+     * 循环执行以下操作，直到栈为空
+     * 2、弹出栈顶节点top，进行访问
+     * 3、将top.right入栈
+     * 4、将top.left入栈
+     */
+    public void preOrderTraversal() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node currentNode = stack.pop();
+            System.out.println(currentNode.element);
+            if (currentNode.right != null) {
+                stack.push(currentNode.right);
+            }
+            if (currentNode.left != null) {
+                stack.push(currentNode.left);
+            }
+        }
+    }
+
+    /**
+     * 中序遍历，非递归方式
+     * 1、将root入栈
+     * 循环执行以下操作
+     * 2、如果node != null
+     *      将node.left入栈
+     *      设置node = node.left
+     */
+    public void inOrderTraversal() {
+
+    }
+
 
     public E remove(E element) {
         return null;
