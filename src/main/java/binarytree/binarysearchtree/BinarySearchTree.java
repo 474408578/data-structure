@@ -7,6 +7,8 @@ package binarytree.binarysearchtree;
 import binarytree.binarysearchtree.printer.BinaryTreeInfo;
 
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -72,7 +74,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
         if (root == null) {
             root = new Node<>(element, null);
             size++;
-            return;
+            return                                                                                                                             ;
         }
 
         /**
@@ -111,15 +113,15 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
      * 前序遍历，递归的方式
      * 根节点，前序遍历左子树，前序遍历右子树
      */
-    public void preOrderTraversalRecursivly() {
-        preOrderTraversalRecursivly(root);
+    public void preOrderTraversalRecursively() {
+        preOrderTraversalRecursively(root);
     }
 
-    public void preOrderTraversalRecursivly(Node<E> node) {
+    public void preOrderTraversalRecursively(Node<E> node) {
         if (node == null) return;
         System.out.println(node.element);
-        preOrderTraversalRecursivly(node.left);
-        preOrderTraversalRecursivly(node.right);
+        preOrderTraversalRecursively(node.left);
+        preOrderTraversalRecursively(node.right);
     }
 
 
@@ -132,7 +134,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
      * 4、将top.left入栈
      */
     public void preOrderTraversal() {
-        Stack<Node> stack = new Stack<>();
+        Stack<Node<E>> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
             Node currentNode = stack.pop();
@@ -147,6 +149,21 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     /**
+     * 中序遍历，递归的方式
+     * 左子树，根节点，右子树
+     */
+    public void inOrderTraversalRecursively() {
+        inOrderTraversalRecursively(root);
+    }
+
+    public void inOrderTraversalRecursively(Node<E> node) {
+        if (node == null) return;
+        inOrderTraversalRecursively(node.left);
+        System.out.println(node.element);
+        inOrderTraversalRecursively(node.right);
+    }
+
+    /**
      * 中序遍历，非递归方式
      * 1、将root入栈
      * 循环执行以下操作
@@ -155,6 +172,51 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
      *      设置node = node.left
      */
     public void inOrderTraversal() {
+        
+    }
+
+    /**
+     * 后序遍历，递归方式
+     * 左子树，右子树，根节点
+     */
+    public void postOrderTraversalRecursively() {
+        postOrderTraversalRecursively(root);
+    }
+
+
+    public void postOrderTraversalRecursively(Node<E> node) {
+        if (node == null) return;
+        postOrderTraversalRecursively(node.left);
+        postOrderTraversalRecursively(node.right);
+        System.out.println(node.element);
+    }
+
+    /**
+     * 层序遍历
+     * 从上到下，从左到右依次访问每一个节点
+     * 使用队列来实现
+     *      将根节点入队
+     *      循环执行以下操作，直到队列为空
+     *          将队头节点A出队，进行访问
+     *          将A的左子节点入队
+     *          将A的右子节点入队
+     */
+    public void levelOrderTraversal() {
+        if (root == null) return;
+        Queue<Node<E>> queue = new LinkedList<>();
+        // 将根节点入队
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            // 取出队头元素并返回，访问队头元素
+            Node<E> node = queue.poll();
+            System.out.println(node.element);
+            if (node.left != null) {
+                queue.offer(node.left);
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
+        }
 
     }
 

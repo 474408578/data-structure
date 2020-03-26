@@ -35,11 +35,15 @@ public class Main {
         // 打印二叉树，使用代码中的printer进行打印
         BinaryTrees.print(bst);
 //        System.out.println("\n");
-//        bst.preOrderTraversalRecursivly();
+//        bst.preOrderTraversalRecursively();
 //        System.out.println("\n");
 //        bst.preOrderTraversal();
         System.out.println("\n");
-        bst.inOrderTraversal();
+        bst.inOrderTraversalRecursively();
+        System.out.println("\n");
+        bst.postOrderTraversalRecursively();
+        System.out.println("\n");
+        bst.levelOrderTraversal();
     }
 
     static void test2() {
