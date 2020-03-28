@@ -75,12 +75,68 @@ public class Main {
             bst.add((int) (Math.random() * 100));
         }
         BinaryTrees.println(bst);
+        System.out.println("二叉搜索树的高度为: " + bst.height());
+        System.out.println("二叉搜索树的高度为: " + bst.heightUseLevelTraversal());
+
     }
 
 
+
+    static void test4() {
+        Integer data[] = new Integer[]{
+            7, 4, 2, 1, 3, 5, 9, 8, 11, 10, 12
+        };
+
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        for (int i = 0; i < data.length; i++) {
+            bst.add(data[i]);
+        }
+        BinaryTrees.println(bst);
+        System.out.println("\n");
+
+//        bst.levelOrderTraversal();
+        System.out.println("\n层序遍历");
+        // 实现Visitor接口
+        bst.levelOrder(new BinarySearchTree.Visitor<Integer>() {
+            public boolean visit(Integer element) {
+                // 不换行
+                System.out.print("-" + element + "-");
+                return element == 2;
+            }
+        });
+
+        System.out.println("\n前序遍历");
+        bst.preOrder(new BinarySearchTree.Visitor<Integer>() {
+            @Override
+            public boolean visit(Integer element) {
+                System.out.print("-" + element + "-");
+                return element == 1;
+            }
+        });
+        System.out.println("\n中序遍历");
+        bst.inOrder(new BinarySearchTree.Visitor<Integer>() {
+            @Override
+            public boolean visit(Integer element) {
+                System.out.print("-" + element + "-");
+                return element == 4;
+            }
+        });
+        System.out.println("\n后序遍历");
+        bst.postOrder(new BinarySearchTree.Visitor<Integer>() {
+            @Override
+            public boolean visit(Integer element) {
+                System.out.print("-" + element + "-");
+                return element == 5;
+            }
+        });
+
+        System.out.println("\n" + bst);
+    }
+
     public static void main(String[] args) {
-        test1();
+//        test1();
 //        test2();
-//        test3();
+        test3();
+//        test4();
     }
 }
