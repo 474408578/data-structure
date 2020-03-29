@@ -1,4 +1,4 @@
-package LeetCode.LinkedList;
+package leetcode.linkedList;
 
 import java.util.HashMap;
 import java.util.Stack;

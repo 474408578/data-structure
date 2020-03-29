@@ -1,4 +1,4 @@
-package LeetCode.LinkedList;
+package leetcode.linkedList;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list/

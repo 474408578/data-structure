@@ -4,6 +4,17 @@ import binarytree.binarysearchtree.printer.BinaryTrees;
 
 import java.util.Comparator;
 
+/**
+ * 经验：如果想要构造一棵二叉搜索树，只需要将元素按照顺序以层序遍历的方式去加就可以了。
+ * 7, 4, 9, 2, 5, 8, 11, 3, 1
+ *
+ *            7
+ *       4         9
+ *    2    5    8     11
+ * 1    3
+ *
+ */
+
 public class Main {
     /**
     // 也可直接使用匿名内部类来实现
@@ -80,8 +91,6 @@ public class Main {
 
     }
 
-
-
     static void test4() {
         Integer data[] = new Integer[]{
             7, 4, 2, 1, 3, 5, 9, 8, 11, 10, 12
@@ -133,10 +142,23 @@ public class Main {
         System.out.println("\n" + bst);
     }
 
+    static void test5() {
+        Integer data[] = new Integer[] {
+                7, 4, 9, 2, 5, 8, 11, 3, 12, 1
+        };
+        BinarySearchTree<Integer> bst = new BinarySearchTree();
+        for (int i = 0; i < data.length; i++) {
+            bst.add(data[i]);
+        }
+        BinaryTrees.println(bst);
+        System.out.println("是否为完全二叉树：" + bst.isComplete());
+    }
+
     public static void main(String[] args) {
 //        test1();
 //        test2();
-        test3();
+//        test3();
 //        test4();
+        test5();
     }
 }

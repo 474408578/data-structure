@@ -55,6 +55,15 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
             this.element = element;
             this.parent = parent;
         }
+
+        private boolean isLeaf() {
+            return this.left == null && right == null;
+        }
+
+        private boolean hasTwoChildern() {
+            return this.left != null && this.right != null;
+        }
+
     }
 
     public int size() {
@@ -78,39 +87,44 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     /**
-     * 判断一棵树是否是完全二叉树，使用层序遍历
+     * 判断一棵树是否是完全二叉树，使用层序遍历：
+     * 定义：
+     *  叶子节点只会出现在最后两层，且最后一层的节点都靠左对齐
+     *  完全二叉树从根节点到倒数第二层为满二叉树
+     *
+     * 实现：
      *  1、树为空，返回false
      *  2、树不为空，层序遍历：
-     *      度为2：如果node.left != null && node.right != null，将node.left, node.right 按顺序入队
-     *      度为1：
-     *          左边为空，右边不为空时，不是完全二叉树 node.left == null && node.right != null 返回false
-     *          左边不为空或者为空，右边为空时（这个节点以下的所有节点都为叶子节点）即：
-     *              node.left != null && node.right == null 或者 node.left == null && node.right == null
+     *      左不为空，node.left != null 将这个元素入队
+     *      左边为空，右边不为空时，不是完全二叉树 node.left == null && node.right != null 返回false
+     *      左边不为空或者为空，右边为空时（这个节点以下（按层序遍历的方式）的所有节点都为叶子节点）即：
+     *      node.left != null && node.right == null 或者 node.left == null && node.right == null
      */
     public boolean isComplete() {
+        // 树为空，返回false
         if (root == null) return false;
         Queue<Node<E>> queue = new LinkedList<>();
+        boolean leaf = false;
         // 将根节点入队
         queue.offer(root);
         while (!queue.isEmpty()){
-            // 取出队头元素并返回，访问队头元素
             Node<E> node = queue.poll();
+            // 已经判定之后的节点是叶子节点，但是这个节点却不是叶子节点的情况
+            if (leaf && !node.isLeaf()) return false;
+
             if (node.left != null && node.right != null) {
                 queue.offer(node.left);
                 queue.offer(node.right);
+            } else if (node.left != null && node.right == null) {
+                queue.offer(node.left);
+                leaf = true; //以后的节点都为叶子节点
             } else if (node.left == null && node.right != null) {
                 return false;
-            } else {
-
-            }
-            if (node.left != null) {
-                queue.offer(node.left);
-            }
-            if (node.right != null) {
-                queue.offer(node.right);
+            } else if (node.left == null && node.right == null) {
+                leaf = true;
             }
         }
-        return false;
+        return true;
     }
 
 
