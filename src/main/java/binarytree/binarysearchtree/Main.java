@@ -1,6 +1,6 @@
 package binarytree.binarysearchtree;
 
-import binarytree.binarysearchtree.printer.BinaryTrees;
+import binarytree.printer.BinaryTrees;
 
 import java.util.Comparator;
 
@@ -154,11 +154,28 @@ public class Main {
         System.out.println("是否为完全二叉树：" + bst.isComplete());
     }
 
+    static void test6() {
+        Integer data[] = new Integer[] {
+                7, 4, 9, 2, 5, 8, 11, 3, 12, 1
+        };
+        BinarySearchTree<Integer> bst = new BinarySearchTree();
+        for (int i = 0; i < data.length; i++) {
+            bst.add(data[i]);
+        }
+        BinaryTrees.println(bst);
+
+        bst.remove(7);
+//        bst.remove(3);
+//        bst.remove(12);
+        BinaryTrees.println(bst);
+    }
+
     public static void main(String[] args) {
 //        test1();
 //        test2();
-//        test3();
+        test3();
 //        test4();
-        test5();
+//        test5();
+//        test6();
     }
 }

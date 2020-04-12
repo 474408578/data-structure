@@ -1,4 +1,4 @@
-package binarytree.binarysearchtree.printer;
+package binarytree.printer;
 
 public interface BinaryTreeInfo {
 	/**
