@@ -15,7 +15,7 @@ import java.util.Comparator;
  *
  */
 
-public class Main {
+public class BSTMain {
     /**
     // 也可直接使用匿名内部类来实现
     private static class PersonComparator implements Comparator<Person> {
@@ -38,7 +38,7 @@ public class Main {
         Integer data[] = new Integer[] {
                 7, 4, 9, 2, 5, 8, 11, 12, 1
         };
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        BST<Integer> bst = new BST<>();
         for (int i = 0; i < data.length; i++) {
             bst.add(data[i]);
         }
@@ -62,14 +62,14 @@ public class Main {
                 7, 4, 9, 2, 5, 8, 11, 3, 12, 1
         };
 
-        BinarySearchTree<Person> bst1 = new BinarySearchTree<>();
+        BST<Person> bst1 = new BST<>();
         for (int i = 0; i < data.length; i++) {
             bst1.add(new Person(data[i]));
         }
 
         BinaryTrees.println(bst1);
 
-        BinarySearchTree<Person> bst2 = new BinarySearchTree<>(new Comparator<Person>() {
+        BST<Person> bst2 = new BST<>(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o2.getAge() - o1.getAge();
             }
@@ -81,7 +81,7 @@ public class Main {
     }
 
     static void test3() {
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        BST<Integer> bst = new BST<>();
         for (int i = 0; i < 30; i++) {
             bst.add((int) (Math.random() * 100));
         }
@@ -96,7 +96,7 @@ public class Main {
             7, 4, 2, 1, 3, 5, 9, 8, 11, 10, 12
         };
 
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        BST<Integer> bst = new BST<>();
         for (int i = 0; i < data.length; i++) {
             bst.add(data[i]);
         }
@@ -106,7 +106,7 @@ public class Main {
 //        bst.levelOrderTraversal();
         System.out.println("\n层序遍历");
         // 实现Visitor接口
-        bst.levelOrder(new BinarySearchTree.Visitor<Integer>() {
+        bst.levelOrder(new BST.Visitor<Integer>() {
             public boolean visit(Integer element) {
                 // 不换行
                 System.out.print("-" + element + "-");
@@ -115,7 +115,7 @@ public class Main {
         });
 
         System.out.println("\n前序遍历");
-        bst.preOrder(new BinarySearchTree.Visitor<Integer>() {
+        bst.preOrder(new BST.Visitor<Integer>() {
             @Override
             public boolean visit(Integer element) {
                 System.out.print("-" + element + "-");
@@ -123,7 +123,7 @@ public class Main {
             }
         });
         System.out.println("\n中序遍历");
-        bst.inOrder(new BinarySearchTree.Visitor<Integer>() {
+        bst.inOrder(new BST.Visitor<Integer>() {
             @Override
             public boolean visit(Integer element) {
                 System.out.print("-" + element + "-");
@@ -131,7 +131,7 @@ public class Main {
             }
         });
         System.out.println("\n后序遍历");
-        bst.postOrder(new BinarySearchTree.Visitor<Integer>() {
+        bst.postOrder(new BST.Visitor<Integer>() {
             @Override
             public boolean visit(Integer element) {
                 System.out.print("-" + element + "-");
@@ -146,7 +146,7 @@ public class Main {
         Integer data[] = new Integer[] {
                 7, 4, 9, 2, 5, 8, 11, 3, 12, 1
         };
-        BinarySearchTree<Integer> bst = new BinarySearchTree();
+        BST<Integer> bst = new BST();
         for (int i = 0; i < data.length; i++) {
             bst.add(data[i]);
         }
@@ -158,7 +158,7 @@ public class Main {
         Integer data[] = new Integer[] {
                 7, 4, 9, 2, 5, 8, 11, 3, 12, 1
         };
-        BinarySearchTree<Integer> bst = new BinarySearchTree();
+        BST<Integer> bst = new BST();
         for (int i = 0; i < data.length; i++) {
             bst.add(data[i]);
         }

@@ -19,15 +19,15 @@ import java.util.Comparator;
  * @param <E>
  */
 // E必须实现Comparable的接口compareTo才可以，保证可比较性。
-public class BinarySearchTree<E> extends BinaryTree<E> {
+public class BST<E> extends BinaryTree<E> {
     // 比较器
     private Comparator<E> comparator;
-    public BinarySearchTree(Comparator<E> comparator) {
+    public BST(Comparator<E> comparator) {
         this.comparator = comparator;
     }
 
     // 不传入比较器
-    public BinarySearchTree() {
+    public BST() {
         this(null);
     }
 
