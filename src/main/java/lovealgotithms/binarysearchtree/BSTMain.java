@@ -1,5 +1,6 @@
 package lovealgotithms.binarysearchtree;
 
+import lovealgotithms.binarytree.binarysearchtree.Person;
 import lovealgotithms.binarytree.printer.BinaryTrees;
 
 import java.util.Comparator;
