@@ -1,4 +1,4 @@
-package binarytree.binarysearchtree;
+package lovealgotithms.binarysearchtree;
 
 import java.util.Comparator;
 

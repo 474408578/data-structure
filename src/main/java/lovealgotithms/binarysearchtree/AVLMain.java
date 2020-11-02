@@ -1,6 +1,6 @@
-package binarytree.binarysearchtree;
+package lovealgotithms.binarysearchtree;
 
-import binarytree.printer.BinaryTrees;
+import lovealgotithms.binarytree.printer.BinaryTrees;
 
 import java.util.Comparator;
 

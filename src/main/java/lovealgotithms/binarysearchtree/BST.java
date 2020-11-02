@@ -1,10 +1,10 @@
-package binarytree.binarysearchtree;
+package lovealgotithms.binarysearchtree;
 
 // 使用官方自定义的
 //import binarytree.binarysearchtree.cmp.Comparable;
 //import binarytree.binarysearchtree.cmp.Comparator;
 
-import binarytree.BinaryTree;
+import lovealgotithms.binarytree.BinaryTree;
 import java.util.Comparator;
 
 /**
