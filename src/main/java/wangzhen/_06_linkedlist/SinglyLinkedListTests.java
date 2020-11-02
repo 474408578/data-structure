@@ -1,9 +1,8 @@
 package wangzhen._06_linkedlist;
 
-import org.junit.jupiter.api.Test;
 
 public class SinglyLinkedListTests {
-    @Test
+
     public void palindromeTests() {
         SinglyLinkedList link = new SinglyLinkedList();
         System.out.println("hello");
