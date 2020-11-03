@@ -1,42 +1,23 @@
-package leetcode.linkedList;
+package leetcode.linkedlist;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list/
  */
 public class _206_ReverseLinkedList {
-
-    /**
-     * null    1  ->  2   ->   3   ->   4   ->   5
-     * prev   curr   next
-     *
-     * null <- 1      2   ->   3   ->   4   ->   5
-     * prev  curr    next
-     *
-     * null <- 1      2   ->   3   ->   4   ->   5
-     *       prev    curr     next
-     *
-     * null <- 1  <-  2        3   ->   4   ->   5
-     *               prev     curr     next
-     *
-     * null <- 1  <-  2   <-   3        4   ->   5
-     *                        prev     curr     next
-     *
-     * null <- 1  <-  2   <-   3    <-  4        5
-     *                                 prev     curr
-     *
-     * null <- 1  <-  2   <-   3    <-  4  <-    5
-     *                                          prev  curr
-     * @param head
-     * @return
-     */
     // 迭代的方法
     public ListNode reverseList1(ListNode head) {
+        if (head == null ||head.next == null) {
+            return head;
+        }
         ListNode currentNode = head;
         ListNode previousNode = null;
-        while (currentNode != null ) {
-            ListNode nextNode = currentNode.next;
-            // 将currentNode.next的值指向previousNode
+        ListNode nextNode = null;
+        while(currentNode != null) {
+            // 记录当前节点的下一个节点
+            nextNode = currentNode.next;
+            // 将当前节点的下一个指向previousNode
             currentNode.next = previousNode;
+            // previousNode和currentNode都往后挪一位
             previousNode = currentNode;
             currentNode = nextNode;
         }
